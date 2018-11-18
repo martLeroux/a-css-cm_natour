@@ -3,6 +3,7 @@ $color-primary-light: #55c57a;
 $color-primary-dark: #28b485;
 $color-grey-dark: #777;
 $color-white: #fff;
+$color-black: #000;
 
 *,
 *::after,
@@ -33,24 +34,24 @@ body {
     background-position: 'center';
     position: relative;
     clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-}
 
-.header__logo-box{
-    position: absolute;
-    top: 4rem;
-    left: 4rem;
-}
+    &__logo-box{
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
 
-.header__logo{
-    height: 35px;
-}
-
-.header__text-box {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    &__logo{
+        height: 35px;
+    }
+    
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
 }
 
 .heading-primary {
@@ -58,24 +59,25 @@ body {
     text-transform: uppercase;
     backface-visibility: hidden;
     margin-bottom: 6rem;
+
+    &--main {
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+        animation: moveInLeft 1.5s ease-out;
+    }
+    
+    &--sub {
+        display: block;
+        font-weight: 400;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+        animation: moveInRight 1.5s ease-out;
+    }
 }
 
-.heading-primary--main {
-    display: block;
-    font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-    animation: moveInLeft 1.5s ease-out;
-}
-
-.heading-primary--sub {
-    display: block;
-    font-weight: 400;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1.75rem;
-    animation: moveInRight 1.5s ease-out;
-}
 
 @keyframes moveInLeft {
     0% {
@@ -116,56 +118,59 @@ body {
     }
 }
 
-.btn:link,
-.btn:visited{
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 15px 40px;
-    display: inline-block;
-    border-radius: 10rem;
-    transition: all .2s;
-    position: relative;
-    font-size: 1.6rem;
+.btn{
+    &:link,
+    &:visited{
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 15px 40px;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all .2s;
+        position: relative;
+        font-size: 1.6rem;
+    }
+
+    &:hover{
+        transform: translateY(-0.3rem);
+        box-shadow: 0 10px 20px rgba($color-black,0.2);
+
+        &::after{
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+
+    &:active{
+        transform: translateY(-0.1rem);
+        box-shadow: 0 10px 10px rgba($color-black,0.2);
+    }
+
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius:  10rem;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: -1;
+    }
+
+    &--white{
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after{
+            background-color: $color-white;
+            transition: all 0.4s;
+        }
+    }
+
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s;
+        animation-fill-mode: backwards;
+    }
 }
 
-.btn--animated {
-    animation: moveInBottom .5s ease-out .75s;
-    animation-fill-mode: backwards;
-}
-
-.btn:hover{
-    transform: translateY(-0.3rem);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-.btn:active{
-    transform: translateY(-0.1rem);
-    box-shadow: 0 10px 10px rgba(0,0,0,0.2);
-}
-
-.btn--white{
-    background-color: $color-white;
-    color: $color-grey-dark;
-}
-
-.btn::after {
-    content: "";
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    border-radius:  10rem;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: -1;
-}
-
-.btn--white::after{
-    background-color: $color-white;
-    transition: all 0.4s;
-}
-
-.btn:hover::after{
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-}
